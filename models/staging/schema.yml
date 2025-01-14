@@ -1,0 +1,35 @@
+
+version: 2
+
+models:
+    - name: stg_devices
+      description: "Cleaning the raw data. Keeping schema structure."
+      columns:
+          - name: id
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: type
+            description: "Device category"
+            tests:
+              - not_null
+          - name: store_id
+            description: "Store foreign key"
+            tests:
+              - not_null
+
+    - name: stg_store
+      description: "Cleaning the raw data. Keeping schema structure."
+      columns:
+        - name: id
+          description: "The primary key for this table"
+          tests:
+            - not_null
+        - name: type
+          description: "Device category"
+          tests:
+            - not_null
+        - name: store_id
+          description: "Store foreign key"
+          tests:
+            - not_null

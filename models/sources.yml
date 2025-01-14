@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    database: sumup_takehometask
+    schema: raw
+    tables:
+      - name: devices
+      - name: stores
+      - name: transacations
+
+  - name: dimensions
+    database: sumup_takehometask
+    schema: dimensions
+    tables:
+      - name: transactions

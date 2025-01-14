@@ -1,0 +1,33 @@
+version: 2
+
+models:
+    - name: dim_stores
+      columns:
+          - name: id
+            tests:
+                - unique
+                - not_null
+    - name: dim_transactions
+      columns:
+          - name: id
+            tests:
+                - unique
+                - not_null
+    - name: dim_customers
+      columns:
+         - name: id
+           tests:
+                - unique
+                - not_null
+    - name: dim_devices
+      columns:
+         - name: id
+           tests:
+                - unique
+                - not_null
+    - name: dim_product
+      columns:
+         - name: id
+           tests:
+                - unique
+                - not_null

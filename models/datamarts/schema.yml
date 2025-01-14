@@ -1,0 +1,16 @@
+version: 2
+
+models:
+    - name: device_performance
+      columns:
+          - name: device_type
+            tests:
+                - unique
+                - not_null
+
+    - name: store_performance
+      columns:
+          - name: store_id
+            tests:
+                - unique
+                - not_null

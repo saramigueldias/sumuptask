@@ -1,0 +1,25 @@
+version: 2
+
+models:
+    - name: fact_store_device_transactions_details
+      columns:
+          - name: store_id
+            tests:
+                - unique
+                - not_null
+          - name: customer_id
+            tests:
+                - unique
+                - not_null
+          - name: transaction_id
+            tests:
+                - unique
+                - not_null
+          - name: device_id
+            tests:
+                - unique
+                - not_null
+          - name: product_id
+            tests:
+                - unique
+                - not_null
