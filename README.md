@@ -2,7 +2,7 @@
 2025.01.15\
 Sara Dias
 
-For this task, I created a pipeline using python (sumup_task.py) that:
+For this task, I created a pipeline using python (`sumup_task.py`) that:
 1. reads the shared xlsx documents and transforms them into csv files,
 2. writes the raw data to snowflake tables (located in `SUMUP_TAKEHOMETASK.RAW`)
 3. using dbt, cleans the raw data in a staging environment (`models/staging`)
