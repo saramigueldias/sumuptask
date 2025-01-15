@@ -45,6 +45,9 @@ The bridge tables(`models/bridges`) exist to establish the relationships between
 The fact table (`models/facts`) is built on top of the dimensions; its unique identifier is the combination of the primary keys of the dimension tables. Ideally, this table should only contain aggregations at the granularity it describes, but for usability purposes, qualitative attributes like store and device details are added to simplify querying by stakeholders.\
 In the fact table, considering the assumption that a transaction can be done to cover multiple products purchased, I split the transaction amount by all components of the primary key to make sure we don't end up accounting inflated transaction amounts. \
 A simplified version of the schema can be seen in `dimensional_model.jpeg`
+<br/>
+![dimensional_model](https://github.com/user-attachments/assets/c3f821c0-5701-4a20-a52a-90b44c6e57b5)
+<br/>
 
 The tables for the dimensional model were build using a merge incremental strategy. Considering heavy daily loads of data, this reduces the cost to reprocess historical data, as it looks only into newly arriving rows (created_at) or rows that have been changed (happened_at) on the day the script is being executed. Considering lack of time/resources to orchestrate and schedule the pipeline for the case study, I setup a date (2022-10-01) as a variable to use as example.\
 Similar to the staging layer, dbt tests were applied ton check for uniqueness of primary keys and non null values.
