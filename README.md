@@ -47,28 +47,28 @@ Considering an assumption that transaction data is updated and re-exported - ex.
 On top of the dimensional model, for usability's sake, I built 2 datamarts(`models/datamarts`): `SUMUP_TAKEHOMETASK.DATAMARTS.STORE_PERFORMANCE` and `SUMUP_TAKEHOMETASK.DATAMARTS.DEVICE_PERFORMANCE`; these are aggregations tables that answer specific stakeholder questions about a certain topic.\
 Their goal is to be easy to use on visualization tools and simple to query with some basic sql knowledge.\
 Using STORE_PERFORMANCE, we can answer: \
-a) Top 10 stores per transacted amount \
+**a) Top 10 stores per transacted amount** \
 `select store_id, sum(transaction_amount) amount 
 from SUMUP_TAKEHOMETASK.DATAMARTS.STORE_PERFORMANCE 
 group by store_id 
 order by amount desc 
 limit 10`;\
-b) Average transacted amount per store typology and country \
+**b) Average transacted amount per store typology and country** \
 `select store_typology, store_country, avg(transaction_amount) avg_amount 
 from SUMUP_TAKEHOMETASK.DATAMARTS.STORE_PERFORMANCE 
 group by store_typology, store_country;` \
-c) Average time for a store to perform its 5 first transactions\
+**c) Average time for a store to perform its 5 first transactions**\
 `select avg(minutes_to_fifth_accepted_transaction) avg_minutes_to_fifth_accepted_transaction 
 from SUMUP_TAKEHOMETASK.DATAMARTS.STORE_PERFORMANCE` 
 
 Using DEVICE_PERFORMANCE, we can answer: \
-a) Percentage of transactions per device type: \
+**a) Percentage of transactions per device type:** \
 `select device_type, sum(ratio_transactions) perc_transactions 
 from SUMUP_TAKEHOMETASK.DATAMARTS.DEVICE_PERFORMANCE 
 group by device_type;` 
 
 And using the fact table directly we can answer: \
-a) Top 10 products sold: \
+**a) Top 10 products sold:** \
 `select product_name, count(transaction_id) transactions
 from SUMUP_TAKEHOMETASK.FACTS.FACT_STORE_DEVICE_TRANSACTIONS_DETAILS 
 where transaction_last_status='accepted' 
