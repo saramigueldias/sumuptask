@@ -2,7 +2,7 @@
 2025.01.15\
 Sara Dias
 
-### Overview
+## Overview
 For this task, I created a pipeline using python (`sumup_task.py`) that:
 1. reads the shared xlsx documents and transforms them into csv files,
 2. writes the raw data to snowflake tables (located in `SUMUP_TAKEHOMETASK.RAW`)
@@ -14,7 +14,7 @@ The script can be run locally - just replace the enviroment variables (username,
 If this is not possible, please reach out and I can execute it locally over a call.
 <br/>
 <br/>
-#### Raw data to warehouse
+### Raw data to warehouse
 The warehouse chosen for this project was Snowflake, considering its the one used by the company. Snowflake doesnt support loading data to tables from xlsx files, so I converted them to csv files in the convert_to_csv() function.
 I created tables for each of the raw datasets shared, specifying the schema and field types.
 To load the csv data to the Snowflake schemas, I first have to stage it, and only after load it into the respective table.
@@ -22,7 +22,7 @@ To load the csv data to the Snowflake schemas, I first have to stage it, and onl
 With this, 3 tables are created in the RAW dataset: `SUMUP_TAKEHOMETASK.RAW.DEVICE`, `SUMUP_TAKEHOMETASK.RAW.STORE`, `SUMUP_TAKEHOMETASK.RAW.TRANSACTION`. 
 <br/>
 <br/>
-#### Staging, data cleanup
+### Staging, data cleanup
 In the step after, the raw data gets cleaned: 
 - NULL values are  replaced by 'Unknown' and -99999, for string and numeric fields respectively;
 - Special/misplaced characters (like commas in the  end of a string) are removed with regex_replace();
@@ -35,7 +35,7 @@ In lorder to organize the tables in distinctly custom named datasets, I added th
 The outcome of the data cleaning is stored as 3 tables in a staging dataset: `SUMUP_TAKEHOMETASK.STAGE.STG_DEVICE`, `SUMUP_TAKEHOMETASK.STAGE.STG_STORE`, `SUMUP_TAKEHOMETASK.STAGE.STG_TRANSACTION`. The scripts are in `models/staging`.
 <br/>
 <br/>
-#### Dimensional model
+### Dimensional model
 Once the data is cleaned, its modelled following Kimball dimensional modeling principles. \
 Each object, and its qualitative attributes - ex. a store, its name, its address - are organized in dimension tables (`models/dimensions`), each with a unique identifier (primnary key). \
 Each dimension table contains only attributed relative to the object they describe - the dimension store wont contain information relative to any possible customers as customers are entities in themselves.\
@@ -52,7 +52,7 @@ Similar to the staging layer, dbt tests were applied ton check for uniqueness of
 Considering an assumption that transaction data is updated and re-exported - ex. a same transaction id can have its status changed -, in order to keep the historical records for all transaction at all times, I created a snapshot of dim_transactions (`snapshots/dim_transactions_history.sql`). This keeps all values each row of the table has taken, with dbt_valid_from and dbt_valid_to as validity dates; the currently valid values, have dbt_valid_to as null.
 <br/>
 <br/>
-#### Datamarts and solution queries
+### Datamarts and solution queries
 On top of the dimensional model, for usability's sake, I built 2 datamarts(`models/datamarts`): `SUMUP_TAKEHOMETASK.DATAMARTS.STORE_PERFORMANCE` and `SUMUP_TAKEHOMETASK.DATAMARTS.DEVICE_PERFORMANCE`; these are aggregations tables that answer specific stakeholder questions about a certain topic.\
 Their goal is to be easy to use on visualization tools and simple to query with some basic sql knowledge.\
 Using STORE_PERFORMANCE, we can answer: \
