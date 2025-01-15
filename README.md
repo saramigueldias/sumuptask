@@ -90,4 +90,4 @@ And using the fact table directly we can answer: \
 
 For the datamarts and the queries above, I made the assumption that, for a transaction to be a successful sale, its status needs to be 'accepted'.
 
-Please reach out should you have any questions on the solution provided
+Please reach out should you have any questions on the solution provided.
