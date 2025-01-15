@@ -10,7 +10,7 @@ For this task, I created a pipeline using python (`sumup_task.py`) that:
 4. creates a dimensional model with dimension tables (`models/dimensions`), bridge tables (`models/bridges`) and fact tables (`models/facts`) 
 5. builds a couple of datamarts to answer client specific questions/visualization tool ready tables
 
-The script can be run locally - just replace the enviroment variables (username, password and account) by your own Snowflake credentials on the python file (l.8-10) and on your local .dbt\profiles.yml (considering dbt is installed, otherwise installation is required to run the script).
+The script can be run locally - just replace the enviroment variables (username, password and account) by your own Snowflake credentials on the python file (l. 8-10) and on your local `.dbt\profiles.yml` (considering dbt is installed, otherwise installation is required to run the script).
 If this is not possible, please reach out and I can execute it locally over a call.
 <br/>
 <br/>
